@@ -29,6 +29,7 @@ namespace TotoGUI
 
         private void txt_TextChanged(object sender, EventArgs e)
         {
+            // 10. b
             if (txt.Text.Length == 14)
             {
                 cbCharAmount.Checked = false;
@@ -38,11 +39,28 @@ namespace TotoGUI
                 cbCharAmount.Checked = true;
             }
             cbCharAmount.Text = $"Nem megfelelő a karakterek száma ({txt.Text.Length})";
+            string hibasKarakterek = "";
+            foreach (var ch in txt.Text)
+            {
+                if (ch != '1' && ch != '2' && ch != 'X')
+                {
+                    hibasKarakterek += ch + ";";
+                }
+            }
+            cbInvChar.Text = $"Helytelen karakterek az eredményekben ({hibasKarakterek})";
+            if (hibasKarakterek.Length == 0)
+            {
+                cbInvChar.Checked = false;
+            }
+            else
+            {
+                cbInvChar.Checked = true;
+            }
         }
 
         private void cbInvChar_CheckedChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnMentes_Click(object sender, EventArgs e)
